@@ -8,9 +8,10 @@ Modified: 22 Oct 2020
 #include "Wire.h"
 using namespace std;
 
-Wire::Wire(string iname = "", int iwireNo = -1) {
+Wire::Wire(string iname = "", int iwireNo = -1, int iwireType = -2) {
 	name = iname;
 	wireNo = iwireNo;
+	wireType = iwireType;
 
 	values.resize(1);
 	values.at(0) = 1;

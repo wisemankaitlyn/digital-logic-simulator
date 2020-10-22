@@ -15,12 +15,14 @@ class Wire
 {
 public:
 	// constructor, initializes values vector
-	Wire(string iname = "", int iwireNo = -1);
+	Wire(string iname = "", int iwireNo = -1, int iwireType = -2);
 
 	// getter
 	int  at(int time) const { return values.at(time); };
 	// setter
 	void SetValue(int time, int val);
+	bool IsOutput() const { return (wireType == 0); };
+	bool IsInput () const { return (wireType == 1); };
 	
 	/* ideas for some operators?
 	int operator&(Wire& rhs);
@@ -29,5 +31,6 @@ public:
 protected:
 	string name;
 	int    wireNo;
+	int    wireType;  // = 0: output; = 1: input; = -1: other
 	vector<int> values;
 };

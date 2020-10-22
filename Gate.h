@@ -22,6 +22,9 @@ public:
 		input1 = NULL;
 	};
 
+	// destructor
+	~Gate() { delete input0; delete input1; delete output; };
+
 	// getters
 	string GetType  () const { return type;   }
 	int    GetDelay () const { return delay;  }
