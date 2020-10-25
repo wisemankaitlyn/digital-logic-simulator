@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Event.h" />
     <ClInclude Include="Gate.h" />
     <ClInclude Include="Wire.h" />
   </ItemGroup>

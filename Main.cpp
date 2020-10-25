@@ -8,8 +8,12 @@ Modified: 22 Oct 2020
 #include<iostream>
 #include<fstream>
 #include<vector>
+#include<queue>
 #include "Wire.cpp"
 #include "Gate.h"
+#include "Event.h"
+
+typedef priority_queue<Event> Queue;
 
 int main()
 {
@@ -19,9 +23,7 @@ int main()
 
 	string input1;
 	int input2;
-	vector<Wire*> inputs;
-	vector<Wire*> outputs;
-	vector<Wire*> others;
+	vector<Wire*> wires;
 	vector<Gate*> gates;
 	
 	cin >> input1;
