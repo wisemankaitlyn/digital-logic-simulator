@@ -36,6 +36,8 @@ public:
 	void SetValue (int time, int val);  // implemented in .cpp
 	void AddGate  (Gate& g          ) { drives.push_back(&g); };
 
+	// print function to make Circuit::Print() nicer
+	void Print();
 	
 protected:
 	string        name;    // if it's a named input/output/whatever

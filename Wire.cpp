@@ -70,3 +70,30 @@ void Wire::SetValue(int time, int val) {
 		cerr << "invalid time entered: " << time << endl;
 	}
 }
+
+
+void Wire::Print()
+{
+	cout << name << "  ";
+
+	for (int val : values)
+	{
+		switch (val)
+		{
+		case -1:
+			cout << "x";
+			break;
+		case 0:
+			cout << "_";
+			break;
+		case 1:
+			cout << "-";
+			break;
+		default:
+			cout << "?";
+			break;
+		}
+	}
+
+	cout << endl;
+}
