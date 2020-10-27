@@ -12,29 +12,26 @@ class Gate;
 class Event {
 public:
 	// constructors
-	// default
+	// default - probably don't need this
 	Event()
-		: wireNum(-1), time(-1), value(-2), cnt(-1) {};
+		: wireNum(-1), time(-1), value(-2) {};
 	// preferred
-	Event(int iwireNum, int itime, int ivalue, int icnt)
-		: wireNum(iwireNum), time(itime), value(ivalue), cnt(icnt) {};
+	Event(int iwireNum, int itime, int ivalue)
+		: wireNum(iwireNum), time(itime), value(ivalue) {};
 
 
 	// getters:
 	int GetWire () const { return wireNum; }
 	int GetTime () const { return time;    }
 	int GetValue() const { return value;   }
-	int GetCnt  () const { return cnt;     }
 
-	// setters:
+	// setters - probably don't need these
 	void SetWire (int iwireNum) { wireNum = iwireNum; }
 	void SetTime (int itime)    { time = itime;       }
 	void SetValue(int ivalue)   { value = ivalue;     }
-	void SetCnt  (int icnt)     { cnt = icnt;         }
 
 protected:
 	int wireNum;
 	int time;
 	int value;
-	int cnt;
 };

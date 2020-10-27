@@ -1,7 +1,7 @@
 /*
 Wire.h    Specification of the Wire class.
 Author:   Kaitlyn Wiseman
-Modified: 22 Oct 2020
+Modified: 27 Oct 2020
 */
 
 #pragma once
@@ -26,23 +26,21 @@ public:
 	// destructor
 	~Wire();  // implemented in .cpp
 
-	// getter
-	int    at       (int time      ) const { return values.at(time); };
+	// getters
+	int    at       (int time      ) const                            ;
 	string GetName  (              ) const { return name;            };
 	int    GetWireNo(              ) const { return wireNo;          };
-	Gate*  GetGate  (int gateNo = 0) const { toGate.at(gateNo);      };
+	Gate*  GetGate  (int gateNo = 0) const { drives.at(gateNo);      };
 
-	// setter
+	// setters
 	void SetValue (int time, int val);  // implemented in .cpp
-	void SetName  (string iname     ) { name = iname;         };
-	void SetWireNo(int iwireNo      ) { wireNo = iwireNo;     };
-	void AddGate  (Gate& g          ) { toGate.push_back(&g); };
+	void AddGate  (Gate& g          ) { drives.push_back(&g); };
 
 	
 protected:
 	string        name;    // if it's a named input/output/whatever
 	int           wireNo;
 	vector<int>   values;  // -1: don't-care, 0: low, 1: high
-	vector<Gate*> toGate;  // gates this wire is an input to
+	vector<Gate*> drives;  // gates this wire is an input to
 
 };

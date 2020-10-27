@@ -1,7 +1,7 @@
 /*
 Wire.cpp  Definition of the Wire class.
 Author:   Kaitlyn Wiseman
-Modified: 22 Oct 2020
+Modified: 27 Oct 2020
 */
 
 
@@ -13,7 +13,7 @@ Modified: 22 Oct 2020
 using namespace std;
 
 
-Wire::Wire(string iname, int iwireNo = -1) {
+Wire::Wire(string iname = "", int iwireNo = -1) {
 	name = iname;
 	wireNo = iwireNo;
 
@@ -23,10 +23,32 @@ Wire::Wire(string iname, int iwireNo = -1) {
 
 
 Wire::~Wire() {
-	for (Gate* g : toGate) {
+	for (Gate* g : drives) {
 		delete g;
 	}
-	toGate.clear();
+	drives.clear();
+}
+
+
+int Wire::at(int time) const {
+	if (time < 0)
+	{
+		cerr << "invalid time entered" << endl;
+		return 3;
+	}
+	else if (values.size() <= time || values.at(time) == 2)
+	{
+		for (int i = time - 1; i >= 0; i--)
+		{
+			if (values.size() <= i || values.at(time) == 2)
+			{
+				continue;
+			}
+			return values.at(i);
+		}
+		return -1;
+	}
+	
 }
 
 
@@ -34,13 +56,14 @@ void Wire::SetValue(int time, int val) {
 
 	if (time >= 0)
 	{
-		// take the previous value and propagate it until time
-		while (values.size() < time)
+		if (values.size() < time) 
 		{
-			values.push_back(values.at(values.size() - 1));
+			// initializes the new values in the vector to 2 to not interfere
+			// with later value propagation (since vectors are zero-initialized)
+			values.resize(time + 1, 2);
 		}
-		// set val to time
-		values.push_back(val);
+
+		values.at(time) = val;
 	}
 	else
 	{
