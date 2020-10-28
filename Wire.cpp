@@ -13,12 +13,11 @@ Modified: 27 Oct 2020
 using namespace std;
 
 
-Wire::Wire(string iname = "", int iwireNo = -1) {
+Wire::Wire(string iname, int iwireNo) {
 	name = iname;
 	wireNo = iwireNo;
 
-	values.resize(1);
-	values.at(0) = -1;
+	values.resize(1, -1);
 }
 
 

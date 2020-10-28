@@ -22,7 +22,7 @@ class Wire {
 
 public:
 	// constructor, initializes values vector
-	Wire(string iname = "", int iwireNo = -1);  // implemented in .cpp
+	Wire(string iname, int iwireNo);  // implemented in .cpp
 	// destructor
 	~Wire();  // implemented in .cpp
 
@@ -33,8 +33,9 @@ public:
 	Gate*  GetGate  (int gateNo = 0) const { drives.at(gateNo);      };
 
 	// setters
+	void SetName  (string iname) { name = iname; };
 	void SetValue (int time, int val);  // implemented in .cpp
-	void AddGate  (Gate& g          ) { drives.push_back(&g); };
+	void AddGate  (Gate* g          ) { drives.push_back(g); };
 
 	// print function to make Circuit::Print() nicer
 	void Print();

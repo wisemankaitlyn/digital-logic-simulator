@@ -18,7 +18,6 @@ Modified:   27 Oct 2020
 
 #include "Circuit.cpp"
 
-
 class Event;
 class Gate;
 class Wire;
@@ -38,6 +37,9 @@ public:
 	bool ReadVector (string filename);
 	bool Simulate   (               );
 	bool Print      (               );
+
+	// other
+	void MakeWire(int wireNo, string iname = "");
 
 protected:
 	string name;

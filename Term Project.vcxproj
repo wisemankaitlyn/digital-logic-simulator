@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Circuit.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="Gate.h" />
     <ClInclude Include="Wire.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Circuit.cpp" />
     <ClCompile Include="Gate.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Wire.cpp" />
