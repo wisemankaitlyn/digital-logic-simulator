@@ -2,16 +2,18 @@
 Main.cpp  Just a little something to work out what the classes
 			need to do
 Author:   Kaitlyn Wiseman
-Modified: 22 Oct 2020
+Modified: 30 Oct 2020
 */
 
 #include<iostream>
 #include<fstream>
 #include<vector>
 #include<queue>
-#include "Wire.cpp"
+#include "Wire.h"
 #include "Gate.h"
 #include "Event.h"
+
+using namespace std;
 
 typedef priority_queue<Event> Queue;
 
@@ -27,21 +29,21 @@ int main()
 	vector<Gate*> gates;
 	
 	cin >> input1;
-	while (/*!eof*/)
+	//while (/*!eof*/)
 	{
 		if (input1 == "INPUT")
 		{
 			cin >> input1;
 			cin >> input2;
-			Wire temp(input1, input2, 1);
-			inputs.push_back(&temp);
+			//Wire temp(input1, input2, 1);
+			//inputs.push_back(&temp);
 		}
 		else if (input1 == "OUTPUT")
 		{
 			cin >> input1;
 			cin >> input2;
-			Wire temp(input1, input2, 0);
-			outputs.push_back(&temp);
+			//Wire temp(input1, input2, 0);
+			//outputs.push_back(&temp);
 		}
 		else
 		{

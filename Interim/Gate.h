@@ -1,12 +1,16 @@
 /*
 Gate.h    Specification & implementation of Gate class.
 Author:   Kaitlyn Wiseman
-Modified: 27 Oct 2020
+Modified: 30 Oct 2020
 */
 
 #pragma once
 
 class Wire;
+
+#include<iostream>
+
+using namespace std;
 
 class Gate
 {
@@ -28,6 +32,9 @@ public:
 	Wire*  GetInput0() const { return input0; }
 	Wire*  GetInput1() const { return input1; }
 	Wire*  GetOutput() const { return output; }
+
+	// other functions
+	int Evaluate(int time) const;
 
 protected:
 	string type;     // type of gate, e.g. XOR

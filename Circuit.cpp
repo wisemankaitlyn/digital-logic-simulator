@@ -1,8 +1,10 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     27 Oct 2020
+Modified:     30 Oct 2020
 */
+
+#pragma once
 
 #include "Circuit.h"
 #include "Wire.h"

@@ -6,15 +6,10 @@ Modified:   27 Oct 2020
 
 #pragma once
 
-#ifndef IOSTREAM
 #include<iostream>
-#endif
-#ifndef FSTREAM
 #include<fstream>
-#endif
-#ifndef VECTOR
 #include<vector>
-#endif
+#include<queue>
 
 #include "Circuit.cpp"
 
@@ -23,6 +18,7 @@ class Gate;
 class Wire;
 
 using namespace std;
+typedef priority_queue<Event> Queue;
 
 class Circuit {
 public:
@@ -46,4 +42,5 @@ protected:
 	vector<Wire*> wires;    // reminder: whenever you .resize() these vectors
 	vector<Wire*> ioWires;  //           of pointers, default init should be 
 	vector<Gate*> gates;    //           NULL
+	Queue q;
 };
