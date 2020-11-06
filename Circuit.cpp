@@ -1,7 +1,7 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     30 Oct 2020
+Modified:     05 Nov 2020
 */
 
 #pragma once
@@ -13,13 +13,29 @@ Modified:     30 Oct 2020
 
 // constructor
 Circuit::Circuit() {
-
+	
 }
 
 
 // destructor
 Circuit::~Circuit() {
+	for (Wire* w : wires)
+	{
+		delete w;
+	}
+	wires.clear();
 
+	for (Wire* w : ioWires)
+	{
+		delete w;
+	}
+	ioWires.clear();
+
+	for (Gate* g : gates)
+	{
+		delete g;
+	}
+	gates.clear();
 }
 
 
@@ -27,6 +43,7 @@ Circuit::~Circuit() {
 
 // step 1.
 bool Circuit::ReadCircuit(string filename) {
+
 	ifstream in;
 	string keyword;
 	string name;
@@ -107,6 +124,44 @@ bool Circuit::ReadCircuit(string filename) {
 // step 2.
 bool Circuit::ReadVector(string filename) {
 
+	ifstream in;
+	string keyword;
+	string wireName;
+	int time;
+	int val;
+
+	in.open(filename + "_v.txt");
+	if (!in.is_open())
+	{
+		cerr << "could not open file " << filename << "_v.txt" << endl;
+		return false;
+	}
+
+	in >> keyword;
+	while (!in.eof())
+	{
+		if (keyword == "VECTOR")
+		{
+			// as of right now, we don't do anything with the vector name...
+			in >> keyword;
+		}
+		else if (keyword == "INPUT")
+		{
+			in >> wireName >> time >> val;
+			for (Wire* w : ioWires)
+			{
+				if (w->GetName() == wireName)
+				{
+					q.push(Event(w->GetWireNo(), time, val));
+					break;
+				}
+			}
+		}
+
+		in >> keyword;
+	}
+
+	in.close();
 }
 
 // step 3.

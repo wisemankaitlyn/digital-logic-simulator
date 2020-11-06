@@ -17,8 +17,10 @@ class Event;
 class Gate;
 class Wire;
 
+#include "Event.h"
+
 using namespace std;
-typedef priority_queue<Event> Queue;
+typedef priority_queue<Event, vector<Event>, less<Event>> Queue;
 
 class Circuit {
 public:
