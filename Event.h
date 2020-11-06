@@ -1,7 +1,7 @@
 /*
 Event.h   Definition of the Event class
 Author:   Kaitlyn Wiseman
-Modified: 05 Nov 2020
+Modified: 06 Nov 2020
 */
 
 #pragma once

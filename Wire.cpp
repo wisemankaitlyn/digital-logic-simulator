@@ -1,7 +1,7 @@
 /*
 Wire.cpp  Definition of the Wire class.
 Author:   Kaitlyn Wiseman
-Modified: 30 Oct 2020
+Modified: 06 Nov 2020
 */
 
 #pragma once
@@ -12,7 +12,7 @@ class Gate;
 
 
 // constructor
-Wire::Wire(string iname, int iwireNo) {
+Wire::Wire(std::string iname, int iwireNo) {
 	name = iname;
 	wireNo = iwireNo;
 
@@ -33,7 +33,7 @@ Wire::~Wire() {
 int Wire::at(int time) const {
 	if (time < 0)
 	{
-		cerr << "invalid time entered" << endl;
+		std::cerr << "invalid time entered" << std::endl;
 		return 3;
 	}
 	else if (values.size() <= time || values.at(time) == 2)
@@ -74,7 +74,7 @@ void Wire::SetValue(int time, int val) {
 	}
 	else
 	{
-		cerr << "invalid time entered: " << time << endl;
+		std::cerr << "invalid time entered: " << time << std::endl;
 	}
 }
 
@@ -82,26 +82,26 @@ void Wire::SetValue(int time, int val) {
 // print function, to make circuit::print cleaner
 void Wire::Print() const
 {
-	cout << name << "  ";
+	std::cout << name << "  ";
 
 	for (int val : values)
 	{
 		switch (val)
 		{
 		case -1:
-			cout << "x";
+			std::cout << "x";
 			break;
 		case 0:
-			cout << "_";
+			std::cout << "_";
 			break;
 		case 1:
-			cout << "-";
+			std::cout << "-";
 			break;
 		default: // something went wrong
-			cout << "?";
+			std::cout << "?";
 			break;
 		}
 	}
 
-	cout << endl;
+	std::cout << std::endl;
 }

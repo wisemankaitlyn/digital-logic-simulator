@@ -1,13 +1,12 @@
 /*
 Gate.cpp  Implementation of Gate class.
 Author:   Kaitlyn Wiseman
-Modified: 30 Oct 2020
+Modified: 06 Nov 2020
 */
 
 #pragma once
 
 #include "Gate.h"
-#include "Wire.h"
 
 int Gate::Evaluate(int time) const
 {

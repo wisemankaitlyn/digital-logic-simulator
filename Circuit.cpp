@@ -1,54 +1,53 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     05 Nov 2020
+Modified:     06 Nov 2020
 */
 
 #pragma once
 
 #include "Circuit.h"
-#include "Wire.h"
-#include "Gate.h"
-#include <string>
+
+//using namespace std;
 
 // constructor
 Circuit::Circuit() {
 	
 }
 
-
+/*
 // destructor
 Circuit::~Circuit() {
-	for (Wire* w : wires)
+	for (auto w : wires)
 	{
 		delete w;
 	}
 	wires.clear();
 
-	for (Wire* w : ioWires)
+	for (auto w : ioWires)
 	{
 		delete w;
 	}
 	ioWires.clear();
 
-	for (Gate* g : gates)
+	for (auto g : gates)
 	{
 		delete g;
 	}
 	gates.clear();
-}
+}*/
 
 
 // main() functions
 
 // step 1.
-bool Circuit::ReadCircuit(string filename) {
+bool Circuit::ReadCircuit(std::string filename) {
 
-	ifstream in;
-	string keyword;
-	string name;
+	std::ifstream in;
+	std::string keyword;
+	std::string name;
 	int number;
-	string delay;
+	std::string delay;
 	int input0;
 	int input1;
 	int output;
@@ -56,7 +55,7 @@ bool Circuit::ReadCircuit(string filename) {
 	in.open(filename + ".txt");
 	if (!in.is_open())
 	{
-		cerr << "could not open file " << filename << ".txt" << endl;
+		std::cerr << "could not open file " << filename << ".txt" << std::endl;
 		return false;
 	}
 
@@ -109,8 +108,8 @@ bool Circuit::ReadCircuit(string filename) {
 		// invalid input
 		else
 		{
-			cerr << "invalid keyword " << keyword 
-				<< ". skipping this line." << endl;
+			std::cerr << "invalid keyword " << keyword 
+				<< ". skipping this line." << std::endl;
 
 			getline(in, keyword);
 		}
@@ -119,21 +118,22 @@ bool Circuit::ReadCircuit(string filename) {
 	}
 
 	in.close();
+	return true;
 }
 
 // step 2.
-bool Circuit::ReadVector(string filename) {
+bool Circuit::ReadVector(std::string filename) {
 
-	ifstream in;
-	string keyword;
-	string wireName;
+	std::ifstream in;
+	std::string keyword;
+	std::string wireName;
 	int time;
 	int val;
 
 	in.open(filename + "_v.txt");
 	if (!in.is_open())
 	{
-		cerr << "could not open file " << filename << "_v.txt" << endl;
+		std::cerr << "could not open file " << filename << "_v.txt" << std::endl;
 		return false;
 	}
 
@@ -162,11 +162,12 @@ bool Circuit::ReadVector(string filename) {
 	}
 
 	in.close();
+	return true;
 }
 
 // step 3.
 bool Circuit::Simulate() {
-
+	return true;
 }
 
 // step 4.
@@ -177,10 +178,11 @@ bool Circuit::Print() {
 	}
 
 	// print the numbers at the bottom
+	return true;
 }
 
 
-void Circuit::MakeWire(int wireNo, string iname = "") {
+void Circuit::MakeWire(int wireNo, std::string iname) {
 	if (wires.size() <= wireNo)
 	{
 		wires.resize(wireNo + 1, NULL);
@@ -189,4 +191,12 @@ void Circuit::MakeWire(int wireNo, string iname = "") {
 	{
 		wires.at(wireNo) = new Wire(iname, wireNo);
 	}
+}
+
+
+void Circuit::PrintQueue() const {
+	//for (Event e : q)
+	//{
+
+	//}
 }
