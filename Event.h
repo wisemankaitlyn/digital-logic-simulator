@@ -33,6 +33,7 @@ public:
 	// operators
 	// < - for use with priority queue comparator
 	bool operator<(const Event& rhs) const { return (this->time < rhs.time); }
+	bool operator>(const Event& rhs) const { return (this->time > rhs.time); }
 
 protected:
 	int wireNum;

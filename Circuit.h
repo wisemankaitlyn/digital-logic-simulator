@@ -19,7 +19,7 @@ class Event;
 class Gate;
 class Wire;
 
-typedef std::priority_queue<Event, std::vector<Event>, std::less<Event>> Queue;
+typedef std::priority_queue<Event, std::vector<Event>, std::greater<Event>> Queue;
 
 class Circuit {
 public:
@@ -38,7 +38,9 @@ public:
 	// other
 	void MakeWire(int wireNo, std::string iname = "");
 
-	// for testing
+	// for debugging
+	void PrintWires() const;
+	void PrintGates() const;
 	void PrintQueue() const;
 
 protected:

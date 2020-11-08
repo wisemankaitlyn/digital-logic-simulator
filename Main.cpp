@@ -2,8 +2,10 @@
 Main.cpp  Just a little something to work out what the classes
 			need to do
 Author:   Kaitlyn Wiseman
-Modified: 06 Nov 2020
+Modified: 08 Nov 2020
 */
+
+#define TEST 0
 
 using namespace std;
 
@@ -16,9 +18,6 @@ using namespace std;
 #include "Event.h"
 #include "Circuit.h"
 
-
-
-typedef priority_queue<Event> Queue;
 
 int main()
 {
@@ -40,4 +39,12 @@ int main()
 		cout << "ERROR reading vector file" << endl;
 		return 1;
 	}
+
+	if (TEST)
+	{
+		cir.PrintWires();
+		cir.PrintGates();
+		cir.PrintQueue();
+	}
+
 }

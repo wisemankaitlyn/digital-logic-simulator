@@ -26,7 +26,7 @@ public:
 	int    at       (int time      ) const                            ;
 	std::string GetName  (              ) const { return name;            };
 	int    GetWireNo(              ) const { return wireNo;          };
-	Gate*  GetGate  (int gateNo = 0) const { drives.at(gateNo);      };
+	Gate*  GetGate  (int gateNo = 0) const { return drives.at(gateNo);      };
 
 	// setters
 	void SetValue (int time, int val);

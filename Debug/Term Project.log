@@ -1,17 +1,2 @@
-﻿  Circuit.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.h(29,49): warning C4834: discarding return value of function with 'nodiscard' attribute
-C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(186,19): warning C4018: '<=': signed/unsigned mismatch
-  Gate.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.h(29,49): warning C4834: discarding return value of function with 'nodiscard' attribute
-  Main.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.h(29,49): warning C4834: discarding return value of function with 'nodiscard' attribute
-  Wire.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.h(29,49): warning C4834: discarding return value of function with 'nodiscard' attribute
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(26,11): warning C4150: deletion of pointer to incomplete type 'Gate'; no destructor called
-C:\Users\wisem\source\repos\CS-1220\Term Project\Event.h(10): message : see declaration of 'Gate'
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(39,25): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(45,22): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(66,21): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-C:\Users\wisem\source\repos\CS-1220\Term Project\Gate.cpp(119): warning C4715: 'Gate::Evaluate': not all control paths return a value
+﻿  Main.cpp
   Term Project.vcxproj -> C:\Users\wisem\source\repos\CS-1220\Debug\Term Project.exe

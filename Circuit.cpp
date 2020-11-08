@@ -1,7 +1,7 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     06 Nov 2020
+Modified:     08 Nov 2020
 */
 
 #pragma once
@@ -194,9 +194,88 @@ void Circuit::MakeWire(int wireNo, std::string iname) {
 }
 
 
-void Circuit::PrintQueue() const {
-	//for (Event e : q)
-	//{
+// for debugging - to test the contents of the queue
+void Circuit::PrintWires() const {
+	std::cout << "Printing all wires: " << std::endl;
 
-	//}
+	for (Wire* w : wires)
+	{
+		if (w == NULL) continue;
+
+		std::cout << w->GetWireNo() << " drives ";
+
+		int i = 0;
+		while (true)
+		{
+			try {
+				std::cout << w->GetGate(i)->GetType() << " ";
+				i++;
+			}
+			catch (std::out_of_range)
+			{
+				break;
+			}
+		}
+
+		std::cout << std::endl;
+	}
+	
+	std::cout << std::endl;
+
+	std::cout << "Printing I/O wires: " << std::endl;
+
+	for (Wire* w : ioWires)
+	{
+		std::cout << w->GetName() << " " << w->GetWireNo() << " drives ";
+
+		int i = 0;
+		while (true)
+		{
+			try {
+				std::cout << w->GetGate(i)->GetType() << " ";
+				i++;
+			}
+			catch (std::out_of_range)
+			{
+				break;
+			}
+		}
+
+		std::cout << std::endl;
+	}
+
+	std::cout << std::endl;
+}
+
+void Circuit::PrintGates() const {
+	std::cout << "Printing gates: " << std::endl;
+
+	for (Gate* g : gates)
+	{
+		std::cout << g->GetType() << " " << g->GetDelay() << " "
+			<< g->GetInput0()->GetWireNo() << " ";
+		if (g->GetType() != "NOT")
+		{
+			std::cout << g->GetInput1()->GetWireNo() << " ";
+		}
+
+		std::cout << g->GetOutput()->GetWireNo() << std::endl;
+	}
+
+	std::cout << std::endl;
+}
+
+void Circuit::PrintQueue() const {
+	Queue temp = q;
+
+	std::cout << "Printing contents of queue: " << std::endl;
+
+	while (!temp.empty())
+	{
+		Event e = temp.top();
+		std::cout << e.GetWire() << " " << e.GetTime() << " "
+			<< e.GetValue() << std::endl;
+
+		temp.pop();
+	}
 }
