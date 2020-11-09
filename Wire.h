@@ -1,7 +1,7 @@
 /*
 Wire.h    Specification of the Wire class.
 Author:   Kaitlyn Wiseman
-Modified: 06 Nov 2020
+Modified: 09 Nov 2020
 */
 
 #pragma once
@@ -34,7 +34,7 @@ public:
 	void AddGate  (Gate* g          ) { drives.push_back(g); };
 
 	// print function to make Circuit::Print() nicer
-	void Print(int time) const;
+	void Print(int time, int nameLen) const;
 	
 protected:
 	std::string   name;    // if it's a named input/output/whatever

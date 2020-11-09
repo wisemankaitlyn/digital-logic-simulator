@@ -60,7 +60,7 @@ void Wire::SetValue(int time, int val) {
 
 	if (time >= 0)
 	{
-		if (values.size() < time) 
+		if (values.size() <= time) 
 		{
 			// initializes the new values in the vector to 2 to not interfere
 			// with later value propagation (since vectors are zero-initialized)
@@ -77,9 +77,13 @@ void Wire::SetValue(int time, int val) {
 
 
 // print function, to make circuit::print cleaner
-void Wire::Print(int time) const
+void Wire::Print(int time, int nameLen) const
 {
-	std::cout << name << "  ";
+	std::cout << name;
+	for (int i = 0; i < nameLen - name.length() + 2; i++)
+	{
+		std::cout << " ";
+	}
 
 	for (int i = 0; i < time; i++)
 	{

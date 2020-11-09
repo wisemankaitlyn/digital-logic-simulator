@@ -1,7 +1,4 @@
-﻿  Wire.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(26,11): warning C4150: deletion of pointer to incomplete type 'Gate'; no destructor called
-C:\Users\wisem\source\repos\CS-1220\Term Project\Event.h(10): message : see declaration of 'Gate'
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(39,25): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(45,22): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(66,21): warning C4018: '<': signed/unsigned mismatch
+﻿  Circuit.cpp
+C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(244,29): warning C4018: '>': signed/unsigned mismatch
+C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(280,19): warning C4018: '<=': signed/unsigned mismatch
   Term Project.vcxproj -> C:\Users\wisem\source\repos\CS-1220\Debug\Term Project.exe

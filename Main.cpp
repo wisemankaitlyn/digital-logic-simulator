@@ -2,7 +2,7 @@
 Main.cpp  Just a little something to work out what the classes
 			need to do
 Author:   Kaitlyn Wiseman
-Modified: 08 Nov 2020
+Modified: 09 Nov 2020
 */
 
 #define TEST 0
@@ -46,6 +46,10 @@ int main()
 		cir.PrintGates();
 		cir.PrintQueue();
 	}
+
+	cout << endl;
+	cout << "Simulating " << filename << ".txt." << endl;
+	cout << endl;
 
 	if (!cir.Simulate())
 	{

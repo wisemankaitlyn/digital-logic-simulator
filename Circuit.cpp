@@ -1,7 +1,7 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     08 Nov 2020
+Modified:     09 Nov 2020
 */
 
 #pragma once
@@ -228,7 +228,11 @@ bool Circuit::Simulate() {
 
 // step 4.
 bool Circuit::Print() {
+	std::cout << "Circuit: " << name << std::endl;
+	std::cout << "Wire traces:" << std::endl;
+
 	int time = ioWires.at(0)->GetValuesSize();
+	int nameLen = ioWires.at(0)->GetName().length();
 
 	for (Wire* w : ioWires)
 	{
@@ -236,14 +240,38 @@ bool Circuit::Print() {
 		{
 			time = w->GetValuesSize();
 		}
+
+		if (w->GetName().length() > nameLen)
+		{
+			nameLen = w->GetName().length();
+		}
 	}
 
 	for (Wire* w : ioWires)
 	{
-		w->Print(time);
+		w->Print(time, nameLen);
 	}
 
 	// print the numbers at the bottom
+
+	std::cout << "   0";
+	while (time > 0)
+	{
+		if (time >= 10)
+		{
+			std::cout << "    5    0";
+			time -= 10;
+		}
+		else if (time >= 5)
+		{
+			std::cout << "    5";
+			time = 0;
+		}
+		time = 0;
+	}
+
+	std::cout << std::endl << std::endl;
+
 	return true;
 }
 
