@@ -42,7 +42,7 @@ Circuit::~Circuit() {
 
 // step 1.
 bool Circuit::ReadCircuit(std::string filename) {
-
+	bool flag = true;
 	std::ifstream in;
 	std::string keyword;
 	std::string name;
@@ -111,6 +111,8 @@ bool Circuit::ReadCircuit(std::string filename) {
 			std::cerr << "invalid keyword " << keyword 
 				<< ". skipping this line." << std::endl;
 
+			flag = false;
+
 			getline(in, keyword);
 		}
 
@@ -118,12 +120,12 @@ bool Circuit::ReadCircuit(std::string filename) {
 	}
 
 	in.close();
-	return true;
+	return flag;
 }
 
 // step 2.
 bool Circuit::ReadVector(std::string filename) {
-
+	bool flag = true;
 	std::ifstream in;
 	std::string keyword;
 	std::string wireName;
@@ -157,24 +159,88 @@ bool Circuit::ReadVector(std::string filename) {
 				}
 			}
 		}
+		else
+		{
+			// this line is invalid input...
+			flag = false;
+		}
 
 		in >> keyword;
 	}
 
 	in.close();
-	return true;
+	return flag;
 }
 
 // step 3.
 bool Circuit::Simulate() {
+
+	while (!q.empty())
+	{
+		// get the next event
+		Event e = q.top();
+		q.pop();
+
+		Wire* w = wires.at(e.GetWire());
+		int val = e.GetValue();
+		int time = e.GetTime();
+		// implement it
+		w->SetValue(time, val);
+
+		// find out if it has any lingering effects
+		// + add addl events accordingly
+		int i = 0;
+		while (true)
+		{
+			try {
+				Gate* g = w->GetGate(i);
+
+				// find out whether the value changed
+				if (g->Evaluate(time) != 
+					g->GetOutput()->at(time + g->GetDelay()))
+				{
+					// yes, the value has changed.
+
+					// find out if there's a duplicate event in the
+					// queue
+					Event n(g->GetOutput()->GetWireNo(), time + g->GetDelay(),
+						g->Evaluate(time));
+
+					if (!IsInQueue(n))
+					{
+						// if there's no duplicate, put the event in
+						q.push(n);
+					}
+				}
+			}
+			// if we index out of the vector range, we've exhausted
+			// the number of gates
+			catch (std::out_of_range)
+			{
+				break;
+			}
+			i++;
+		}
+		
+	}
 	return true;
 }
 
 // step 4.
 bool Circuit::Print() {
+	int time = ioWires.at(0)->GetValuesSize();
+
 	for (Wire* w : ioWires)
 	{
-		w->Print();
+		if (w->GetValuesSize() > time)
+		{
+			time = w->GetValuesSize();
+		}
+	}
+
+	for (Wire* w : ioWires)
+	{
+		w->Print(time);
 	}
 
 	// print the numbers at the bottom
@@ -191,6 +257,24 @@ void Circuit::MakeWire(int wireNo, std::string iname) {
 	{
 		wires.at(wireNo) = new Wire(iname, wireNo);
 	}
+}
+
+bool Circuit::IsInQueue(Event& e)
+{
+	Queue temp = q;
+
+	while (!temp.empty())
+	{
+		Event qe = temp.top();
+		temp.pop();
+
+		if (qe == e)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

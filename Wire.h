@@ -27,13 +27,14 @@ public:
 	std::string GetName  (              ) const { return name;            };
 	int    GetWireNo(              ) const { return wireNo;          };
 	Gate*  GetGate  (int gateNo = 0) const { return drives.at(gateNo);      };
+	int GetValuesSize() const { return values.size(); }
 
 	// setters
 	void SetValue (int time, int val);
 	void AddGate  (Gate* g          ) { drives.push_back(g); };
 
 	// print function to make Circuit::Print() nicer
-	void Print() const;
+	void Print(int time) const;
 	
 protected:
 	std::string   name;    // if it's a named input/output/whatever

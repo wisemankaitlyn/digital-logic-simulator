@@ -47,4 +47,15 @@ int main()
 		cir.PrintQueue();
 	}
 
+	if (!cir.Simulate())
+	{
+		cout << "ERROR simulating circuit" << endl;
+		return 1;
+	}
+
+	if (!cir.Print())
+	{
+		cout << "ERROR printing output" << endl;
+		return 1;
+	}
 }

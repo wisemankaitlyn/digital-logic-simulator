@@ -80,12 +80,14 @@ void Wire::SetValue(int time, int val) {
 
 
 // print function, to make circuit::print cleaner
-void Wire::Print() const
+void Wire::Print(int time) const
 {
 	std::cout << name << "  ";
 
-	for (int val : values)
+	for (int i = 0; i < time; i++)
 	{
+		int val = this->at(i);
+
 		switch (val)
 		{
 		case -1:

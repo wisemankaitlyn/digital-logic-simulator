@@ -37,6 +37,7 @@ public:
 
 	// other
 	void MakeWire(int wireNo, std::string iname = "");
+	bool IsInQueue(Event& e);
 
 	// for debugging
 	void PrintWires() const;
