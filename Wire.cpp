@@ -1,7 +1,7 @@
 /*
 Wire.cpp  Definition of the Wire class.
 Author:   Kaitlyn Wiseman
-Modified: 06 Nov 2020
+Modified: 09 Nov 2020
 */
 
 #pragma once
@@ -42,7 +42,7 @@ int Wire::at(int time) const {
 		// backtrack until there's a valid value.
 		for (int i = time - 1; i >= 0; i--)
 		{
-			if (values.size() <= i || values.at(time) == 2)
+			if (values.size() <= i || values.at(i) == 2)
 			{
 				continue;
 			}
@@ -51,10 +51,7 @@ int Wire::at(int time) const {
 		// if you run out of values to cycle through, it's undefined
 		return -1;
 	}
-	else
-	{
-		return values.at(time);
-	}
+	return values.at(time);
 }
 
 
