@@ -5,7 +5,7 @@ Author:   Kaitlyn Wiseman
 Modified: 09 Nov 2020
 */
 
-#define TEST 0
+#define TEST 1
 
 using namespace std;
 

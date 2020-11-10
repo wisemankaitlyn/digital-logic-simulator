@@ -19,7 +19,7 @@ class Event;
 class Gate;
 class Wire;
 
-typedef std::priority_queue<Event, std::vector<Event>, std::greater<Event>> Queue;
+typedef std::priority_queue<Event, std::vector<Event>, std::greater_equal<Event>> Queue;
 
 class Circuit {
 public:

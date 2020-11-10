@@ -34,6 +34,7 @@ public:
 	// for use with priority queue comparator
 	bool operator<(const Event& rhs) const { return (this->time < rhs.time); }
 	bool operator>(const Event& rhs) const { return (this->time > rhs.time); }
+	bool operator>=(const Event& rhs) const { return (this->time >= rhs.time); }
 	// equality operator, for use with Circuit::IsInQueue
 	bool operator==(const Event& rhs) const;
 

@@ -1,7 +1,7 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     09 Nov 2020
+Modified:     10 Nov 2020
 */
 
 #pragma once
@@ -130,6 +130,7 @@ bool Circuit::ReadVector(std::string filename) {
 	std::string keyword;
 	std::string wireName;
 	int time;
+	std::string tempval;
 	int val;
 
 	in.open(filename + "_v.txt");
@@ -149,7 +150,17 @@ bool Circuit::ReadVector(std::string filename) {
 		}
 		else if (keyword == "INPUT")
 		{
-			in >> wireName >> time >> val;
+			in >> wireName >> time >> tempval;
+
+			if (tempval == "X")
+			{
+				val = -1;
+			}
+			else
+			{
+				val = atoi(tempval.c_str());
+			}
+
 			for (Wire* w : ioWires)
 			{
 				if (w->GetName() == wireName)
@@ -253,7 +264,6 @@ bool Circuit::Print() {
 	}
 
 	// print the numbers at the bottom
-
 	std::cout << "   0";
 	while (time > 0)
 	{
@@ -267,7 +277,11 @@ bool Circuit::Print() {
 			std::cout << "    5";
 			time = 0;
 		}
-		time = 0;
+		else
+		{
+			time = 0;
+		}
+		
 	}
 
 	std::cout << std::endl << std::endl;

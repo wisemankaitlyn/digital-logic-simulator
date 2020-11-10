@@ -62,7 +62,8 @@ int Gate::Evaluate(int time) const
 		{
 			return -1;
 		}
-		else if (input0->at(time) != input1->at(time))
+		else if ((input0->at(time) == 1 && input1->at(time) == 0)
+			|| (input0->at(time) == 0 && input1->at(time) == 1))
 		{
 			return 1;
 		}

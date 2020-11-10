@@ -79,6 +79,8 @@ void Wire::SetValue(int time, int val) {
 // print function, to make circuit::print cleaner
 void Wire::Print(int time, int nameLen) const
 {
+	// print the name of the wire--allows for names of
+	// variable length
 	std::cout << name;
 	for (int i = 0; i < nameLen - name.length() + 2; i++)
 	{
