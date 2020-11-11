@@ -222,6 +222,10 @@ bool Circuit::Simulate() {
 						// if there's no duplicate, put the event in
 						q.push(n);
 					}
+					
+					// also go ahead and set the wire...
+					//wires.at(n.GetWire())->SetValue(n.GetTime(), n.GetValue());
+
 				}
 			}
 			// if we index out of the vector range, we've exhausted

@@ -32,13 +32,13 @@ int Gate::Evaluate(int time) const
 		{
 			return 1;
 		}
-		else if (input0->at(time) == -1 && input1->at(time) == -1)
+		else if (input0->at(time) == 0 || input1->at(time) == 0)
 		{
-			return -1;
+			return 0;
 		}
 		else
 		{
-			return 0;
+			return -1;
 		}
 	}
 	else if (type == "OR")
@@ -47,13 +47,13 @@ int Gate::Evaluate(int time) const
 		{
 			return 1;
 		}
-		else if (input0->at(time) == -1 && input1->at(time) == -1)
+		else if (input0->at(time) == 0 && input1->at(time) == 0)
 		{
-			return -1;
+			return 0;
 		}
 		else 
 		{
-			return 0;
+			return -1;
 		}
 	}
 	else if (type == "XOR")
@@ -78,13 +78,13 @@ int Gate::Evaluate(int time) const
 		{
 			return 0;
 		}
-		else if (input0->at(time) == -1 && input1->at(time) == -1)
+		else if (input0->at(time) == 0 || input1->at(time) == 0)
 		{
-			return -1;
+			return 1;
 		}
 		else
 		{
-			return 1;
+			return -1;
 		}
 	}
 	else if (type == "NOR")
@@ -93,13 +93,13 @@ int Gate::Evaluate(int time) const
 		{
 			return 0;
 		}
-		else if (input0->at(time) == -1 && input1->at(time) == -1)
+		else if (input0->at(time) == 0 && input1->at(time) == 0)
 		{
-			return -1;
+			return 1;
 		}
 		else
 		{
-			return 1;
+			return -1;
 		}
 	}
 	else if (type == "XNOR")

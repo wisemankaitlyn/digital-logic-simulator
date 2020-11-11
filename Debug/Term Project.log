@@ -1,16 +1,3 @@
-﻿  Circuit.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(255,29): warning C4018: '>': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(294,19): warning C4018: '<=': signed/unsigned mismatch
-  Event.cpp
-  Gate.cpp
-  Main.cpp
-  Wire.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(26,11): warning C4150: deletion of pointer to incomplete type 'Gate'; no destructor called
-C:\Users\wisem\source\repos\CS-1220\Term Project\Event.h(10): message : see declaration of 'Gate'
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(39,25): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(45,22): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(63,21): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Wire.cpp(85,20): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+﻿  Gate.cpp
 C:\Users\wisem\source\repos\CS-1220\Term Project\Gate.cpp(120): warning C4715: 'Gate::Evaluate': not all control paths return a value
   Term Project.vcxproj -> C:\Users\wisem\source\repos\CS-1220\Debug\Term Project.exe
