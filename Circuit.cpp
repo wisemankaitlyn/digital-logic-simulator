@@ -1,7 +1,7 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     11 Nov 2020
+Modified:     12 Nov 2020
 */
 
 #pragma once
@@ -219,10 +219,20 @@ bool Circuit::Simulate() {
 					{
 						if (!IsInQueue(n))
 						{
-							// if there's no duplicate, put the event in
-							q.push(n);
-						}
-						wires.at(n.GetWire())->SetValue(n.GetTime(), n.GetValue());
+							// if there's an earlier-created event in the queue for the
+							// same wire + time but a different value (i.e. a conflict),
+							// update the event with the new value
+							if (IsConflict(n))
+							{
+								ReplaceInQueue(n);
+							}
+							// if there's no duplicate or conflict, put the event in
+							else 
+							{
+								q.push(n);
+							}
+							wires.at(n.GetWire())->SetValue(n.GetTime(), n.GetValue());
+						}						
 					}
 				}
 			}
@@ -306,7 +316,7 @@ void Circuit::MakeWire(int wireNo, std::string iname) {
 	}
 }
 
-bool Circuit::IsInQueue(Event& e)
+bool Circuit::IsInQueue(Event& e) const
 {
 	Queue temp = q;
 
@@ -322,6 +332,59 @@ bool Circuit::IsInQueue(Event& e)
 	}
 
 	return false;
+}
+
+
+bool Circuit::IsConflict(Event& e) const
+{
+	Queue temp = q;
+
+	while (!temp.empty())
+	{
+		Event qe = temp.top();
+		temp.pop();
+
+		if (qe.GetWire() == e.GetWire()
+			&& qe.GetTime() == e.GetTime()
+			&& qe.GetValue() != e.GetValue())
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void Circuit::ReplaceInQueue(Event& e)
+{
+	Queue temp;
+	Queue copy = q;
+
+	Event current;
+
+	while (!copy.empty())
+	{
+		current = copy.top();
+		copy.pop();
+
+		if (current.GetWire() == e.GetWire()
+			&& current.GetTime() == e.GetTime())
+		{
+			temp.push(e);
+
+			while (!copy.empty())
+			{
+				temp.push(copy.top());
+				copy.pop();
+			}
+			q = temp;
+
+			return;
+		}
+
+		temp.push(current);
+	}
+
 }
 
 

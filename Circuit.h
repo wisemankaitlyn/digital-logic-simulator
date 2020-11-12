@@ -1,7 +1,7 @@
 /*
 Circuit.h   Implementation of the Circuit class
 Author:     Kaitlyn Wiseman
-Modified:   06 Nov 2020
+Modified:   12 Nov 2020
 */
 
 #pragma once
@@ -25,19 +25,26 @@ class Circuit {
 public:
 	// constructor
 	Circuit();
-
-	// destructor
-	//~Circuit();
 	
-	// to use in main()
+	// TO USE IN MAIN()
 	bool ReadCircuit(std::string filename);
 	bool ReadVector (std::string filename);
 	bool Simulate   (               );
 	bool Print      (               );
 
-	// other
+	// OTHER
 	void MakeWire(int wireNo, std::string iname = "");
-	bool IsInQueue(Event& e);
+	// Checks to see if there is already an Event in the Queue exactly
+	//    the same as e.
+	bool IsInQueue(Event& e) const;
+	// An event is in conflict if there is already an event in the Queue
+	//    for the same wire at the same time but with a different value.
+	//    This function returns true if it finds Event e in conflict 
+	//    with another event in the Queue.
+	bool IsConflict(Event& e) const;
+	// Given a conflict in the Queue, this function will replace the
+	//    conflicting Event with e.
+	void ReplaceInQueue(Event& e);
 
 	// for debugging
 	void PrintWires() const;
