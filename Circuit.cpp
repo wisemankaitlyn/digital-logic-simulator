@@ -42,7 +42,6 @@ Circuit::~Circuit() {
 
 // step 1.
 bool Circuit::ReadCircuit(std::string filename) {
-	bool flag = true;
 	std::ifstream in;
 	std::string keyword;
 	std::string name;
@@ -111,16 +110,15 @@ bool Circuit::ReadCircuit(std::string filename) {
 			std::cerr << "invalid keyword " << keyword 
 				<< ". skipping this line." << std::endl;
 
-			flag = false;
-
-			getline(in, keyword);
+			// clear the line
+			getline(in, keyword, '\n');
 		}
 
 		in >> keyword;
 	}
 
 	in.close();
-	return flag;
+	return true;
 }
 
 // step 2.

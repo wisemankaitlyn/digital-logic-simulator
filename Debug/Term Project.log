@@ -1,4 +1,4 @@
 ﻿  Circuit.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(258,29): warning C4018: '>': signed/unsigned mismatch
-C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(301,19): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(256,29): warning C4018: '>': signed/unsigned mismatch
+C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(299,19): warning C4018: '<=': signed/unsigned mismatch
   Term Project.vcxproj -> C:\Users\wisem\source\repos\CS-1220\Debug\Term Project.exe

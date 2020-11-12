@@ -2,7 +2,7 @@
 Main.cpp  Just a little something to work out what the classes
 			need to do
 Author:   Kaitlyn Wiseman
-Modified: 10 Nov 2020
+Modified: 11 Nov 2020
 */
 
 #define TEST 0
