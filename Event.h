@@ -1,7 +1,7 @@
 /*
 Event.h   Definition of the Event class
 Author:   Kaitlyn Wiseman
-Modified: 10 Nov 2020
+Modified: 12 Nov 2020
 */
 
 #pragma once
@@ -11,7 +11,7 @@ class Gate;
 
 class Event {
 public:
-	// constructors
+	// CONSTRUCTORS
 	// default - probably don't need this
 	Event()
 		: wireNum(-1), time(-1), value(-2) {};
@@ -20,17 +20,17 @@ public:
 		: wireNum(iwireNum), time(itime), value(ivalue) {};
 
 
-	// getters:
+	// GETTERS
 	int GetWire () const { return wireNum; }
 	int GetTime () const { return time;    }
 	int GetValue() const { return value;   }
 
-	// setters - probably don't need these
+	// SETTERS - probably don't need these
 	void SetWire (int iwireNum) { wireNum = iwireNum; }
 	void SetTime (int itime)    { time = itime;       }
 	void SetValue(int ivalue)   { value = ivalue;     }
 
-	// operators
+	// OPERATORS
 	// for use with priority queue comparator
 	bool operator<(const Event& rhs) const { return (this->time < rhs.time); }
 	bool operator>(const Event& rhs) const { return (this->time > rhs.time); }

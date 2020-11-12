@@ -1,7 +1,7 @@
 /*
 Gate.h    Specification & implementation of Gate class.
 Author:   Kaitlyn Wiseman
-Modified: 06 Nov 2020
+Modified: 12 Nov 2020
 */
 
 #pragma once
@@ -17,7 +17,7 @@ class Wire;
 class Gate
 {
 public:
-	// constructors
+	// CONSTRUCTORS
 	// regular gates (2 inputs)
 	Gate(std::string typex, int delayx, Wire* input0x, Wire* input1x, Wire* outputx)
 		: type(typex), delay(delayx), input0(input0x), input1(input1x), output(outputx) {};
@@ -25,23 +25,23 @@ public:
 	Gate(std::string typex, int delayx, Wire* input0x,                Wire* outputx)
 		: type(typex), delay(delayx), input0(input0x), input1(NULL   ), output(outputx) {};
 
-	// destructor
-	~Gate() { delete input0; delete input1; delete output; };
-
-	// getters
+	// GETTERS
 	std::string GetType  () const { return type;   }
-	int    GetDelay () const { return delay;  }
-	Wire*  GetInput0() const { return input0; }
-	Wire*  GetInput1() const { return input1; }
-	Wire*  GetOutput() const { return output; }
+	int         GetDelay () const { return delay;  }
+	Wire*       GetInput0() const { return input0; }
+	Wire*       GetInput1() const { return input1; }
+	Wire*       GetOutput() const { return output; }
 
-	// other functions
+	// OTHER
+	// returns what the value of the output wire should be
+	//    at (time + delay), using the values of the input(s)
+	//    at time.
 	int Evaluate(int time) const;
 
 protected:
 	std::string type;     // type of gate, e.g. XOR
-	int    delay;    // propagation delay in unit time
-	Wire*  input0;   // wire input 1
-	Wire*  input1;   // wire input 2
-	Wire*  output;   // wire output
+	int         delay;    // propagation delay in unit time
+	Wire*       input0;   // wire input 1
+	Wire*       input1;   // wire input 2
+	Wire*       output;   // wire output
 };

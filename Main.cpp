@@ -1,13 +1,9 @@
 /*
-Main.cpp  Just a little something to work out what the classes
-			need to do
+Main.cpp  
 Author:   Kaitlyn Wiseman
-Modified: 11 Nov 2020
+Modified: 12 Nov 2020
 */
 
-#define TEST 1
-
-using namespace std;
 
 #include<iostream>
 #include<fstream>
@@ -18,6 +14,7 @@ using namespace std;
 #include "Event.h"
 #include "Circuit.h"
 
+using namespace std;
 
 int main()
 {
@@ -30,36 +27,23 @@ int main()
 
 	if (!cir.ReadCircuit(filename))
 	{
-		cout << "ERROR reading circuit file" << endl;
+		cout << "ERROR reading circuit description file" << endl;
 		return 1;
 	}
 
 	if (!cir.ReadVector(filename))
 	{
-		cout << "ERROR reading vector file" << endl;
+		cout << "ERROR reading circuit vector file" << endl;
 		return 1;
-	}
-
-	if (TEST)
-	{
-		cir.PrintWires();
-		cir.PrintGates();
-		cir.PrintQueue();
 	}
 
 	cout << endl;
 	cout << "Simulating " << filename << ".txt." << endl;
 	cout << endl;
 
-	if (!cir.Simulate())
-	{
-		cout << "ERROR simulating circuit" << endl;
-		return 1;
-	}
+	cir.Simulate();
 
-	if (!cir.Print())
-	{
-		cout << "ERROR printing output" << endl;
-		return 1;
-	}
+	cir.Print();
+
+	return 0;
 }

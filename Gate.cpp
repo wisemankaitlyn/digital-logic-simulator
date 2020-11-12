@@ -117,4 +117,5 @@ int Gate::Evaluate(int time) const
 			return 1;
 		}
 	}
+	return 3;
 }

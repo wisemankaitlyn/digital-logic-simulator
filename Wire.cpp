@@ -1,7 +1,7 @@
 /*
 Wire.cpp  Definition of the Wire class.
 Author:   Kaitlyn Wiseman
-Modified: 09 Nov 2020
+Modified: 12 Nov 2020
 */
 
 #pragma once
@@ -11,7 +11,7 @@ class Gate;
 #include "Wire.h"
 
 
-// constructor
+// CONSTRUCTOR
 Wire::Wire(std::string iname, int iwireNo) {
 	name = iname;
 	wireNo = iwireNo;
@@ -20,14 +20,7 @@ Wire::Wire(std::string iname, int iwireNo) {
 }
 
 
-// destructor
-Wire::~Wire() {
-	for (Gate* g : drives) {
-		delete g;
-	}
-	drives.clear();
-}
-
+// GETTERS
 
 // get value
 int Wire::at(int time) const {
@@ -54,6 +47,7 @@ int Wire::at(int time) const {
 	return values.at(time);
 }
 
+// SETTERS
 
 // set value
 void Wire::SetValue(int time, int val) {
@@ -75,6 +69,7 @@ void Wire::SetValue(int time, int val) {
 	}
 }
 
+// OTHER
 
 // print function, to make circuit::print cleaner
 void Wire::Print(int time, int nameLen) const

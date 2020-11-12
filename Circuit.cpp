@@ -8,37 +8,13 @@ Modified:     12 Nov 2020
 
 #include "Circuit.h"
 
-//using namespace std;
-
 // constructor
 Circuit::Circuit() {
 	
 }
 
-/*
-// destructor
-Circuit::~Circuit() {
-	for (auto w : wires)
-	{
-		delete w;
-	}
-	wires.clear();
 
-	for (auto w : ioWires)
-	{
-		delete w;
-	}
-	ioWires.clear();
-
-	for (auto g : gates)
-	{
-		delete g;
-	}
-	gates.clear();
-}*/
-
-
-// main() functions
+// TO USE IN MAIN()
 
 // step 1.
 bool Circuit::ReadCircuit(std::string filename) {
@@ -54,7 +30,8 @@ bool Circuit::ReadCircuit(std::string filename) {
 	in.open(filename + ".txt");
 	if (!in.is_open())
 	{
-		std::cerr << "could not open file " << filename << ".txt" << std::endl;
+		std::cerr << std::endl;
+		std::cerr << "Could not open file " << filename << ".txt" << std::endl;
 		return false;
 	}
 
@@ -134,7 +111,8 @@ bool Circuit::ReadVector(std::string filename) {
 	in.open(filename + "_v.txt");
 	if (!in.is_open())
 	{
-		std::cerr << "could not open file " << filename << "_v.txt" << std::endl;
+		std::cerr << std::endl;
+		std::cerr << "Could not open file " << filename << "_v.txt" << std::endl;
 		return false;
 	}
 
@@ -182,7 +160,7 @@ bool Circuit::ReadVector(std::string filename) {
 }
 
 // step 3.
-bool Circuit::Simulate() {
+void Circuit::Simulate() {
 	while (!q.empty())
 	{
 		// get the next event
@@ -245,11 +223,10 @@ bool Circuit::Simulate() {
 			i++;
 		}
 	}
-	return true;
 }
 
 // step 4.
-bool Circuit::Print() {
+void Circuit::Print() {
 	std::cout << "Circuit: " << name << std::endl;
 	std::cout << "Wire traces:" << std::endl;
 
@@ -300,10 +277,10 @@ bool Circuit::Print() {
 	}
 
 	std::cout << std::endl << std::endl;
-
-	return true;
 }
 
+
+// OTHER
 
 void Circuit::MakeWire(int wireNo, std::string iname) {
 	if (wires.size() <= wireNo)
@@ -315,6 +292,7 @@ void Circuit::MakeWire(int wireNo, std::string iname) {
 		wires.at(wireNo) = new Wire(iname, wireNo);
 	}
 }
+
 
 bool Circuit::IsInQueue(Event& e) const
 {
@@ -354,6 +332,7 @@ bool Circuit::IsConflict(Event& e) const
 
 	return false;
 }
+
 
 void Circuit::ReplaceInQueue(Event& e)
 {
