@@ -1,7 +1,7 @@
 /*
 Event.h   Definition of the Event class
 Author:   Kaitlyn Wiseman
-Modified: 08 Nov 2020
+Modified: 10 Nov 2020
 */
 
 #pragma once
@@ -34,7 +34,6 @@ public:
 	// for use with priority queue comparator
 	bool operator<(const Event& rhs) const { return (this->time < rhs.time); }
 	bool operator>(const Event& rhs) const { return (this->time > rhs.time); }
-	bool operator>=(const Event& rhs) const { return !(this->time < rhs.time); }
 	// equality operator, for use with Circuit::IsInQueue
 	bool operator==(const Event& rhs) const;
 

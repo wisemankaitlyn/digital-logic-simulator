@@ -1,7 +1,7 @@
 /*
 Gate.cpp  Implementation of Gate class.
 Author:   Kaitlyn Wiseman
-Modified: 06 Nov 2020
+Modified: 10 Nov 2020
 */
 
 #pragma once

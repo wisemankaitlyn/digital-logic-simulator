@@ -1,3 +1,4 @@
-﻿  Gate.cpp
-C:\Users\wisem\source\repos\CS-1220\Term Project\Gate.cpp(120): warning C4715: 'Gate::Evaluate': not all control paths return a value
+﻿  Circuit.cpp
+C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(258,29): warning C4018: '>': signed/unsigned mismatch
+C:\Users\wisem\source\repos\CS-1220\Term Project\Circuit.cpp(301,19): warning C4018: '<=': signed/unsigned mismatch
   Term Project.vcxproj -> C:\Users\wisem\source\repos\CS-1220\Debug\Term Project.exe

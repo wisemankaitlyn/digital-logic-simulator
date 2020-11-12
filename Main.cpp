@@ -2,10 +2,10 @@
 Main.cpp  Just a little something to work out what the classes
 			need to do
 Author:   Kaitlyn Wiseman
-Modified: 09 Nov 2020
+Modified: 10 Nov 2020
 */
 
-#define TEST 1
+#define TEST 0
 
 using namespace std;
 

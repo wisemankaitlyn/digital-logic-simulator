@@ -1,7 +1,7 @@
 /*
 Circuit.cpp   Implementation of the Circuit class
 Author:       Kaitlyn Wiseman
-Modified:     10 Nov 2020
+Modified:     11 Nov 2020
 */
 
 #pragma once
@@ -185,7 +185,6 @@ bool Circuit::ReadVector(std::string filename) {
 
 // step 3.
 bool Circuit::Simulate() {
-
 	while (!q.empty())
 	{
 		// get the next event
@@ -217,15 +216,16 @@ bool Circuit::Simulate() {
 					Event n(g->GetOutput()->GetWireNo(), time + g->GetDelay(),
 						g->Evaluate(time));
 
-					if (!IsInQueue(n))
+					// to make sure we don't simulate past 60 ns
+					if (n.GetTime() <= 60)
 					{
-						// if there's no duplicate, put the event in
-						q.push(n);
+						if (!IsInQueue(n))
+						{
+							// if there's no duplicate, put the event in
+							q.push(n);
+						}
+						wires.at(n.GetWire())->SetValue(n.GetTime(), n.GetValue());
 					}
-					
-					// also go ahead and set the wire...
-					//wires.at(n.GetWire())->SetValue(n.GetTime(), n.GetValue());
-
 				}
 			}
 			// if we index out of the vector range, we've exhausted
@@ -236,7 +236,6 @@ bool Circuit::Simulate() {
 			}
 			i++;
 		}
-		
 	}
 	return true;
 }
@@ -268,7 +267,11 @@ bool Circuit::Print() {
 	}
 
 	// print the numbers at the bottom
-	std::cout << "   0";
+	for (int i = 0; i < nameLen + 2; i++)
+	{
+		std::cout << " ";
+	}
+	std::cout << "0";
 	while (time > 0)
 	{
 		if (time >= 10)
