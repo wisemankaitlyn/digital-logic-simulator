@@ -226,9 +226,12 @@ void Circuit::Simulate() {
 }
 
 // step 4.
-void Circuit::Print() {
-	std::cout << "Circuit: " << name << std::endl;
-	std::cout << "Wire traces:" << std::endl;
+std::string Circuit::Print() {
+	std::string output = "";
+	//std::cout << "Circuit: " << name << std::endl;
+	output += "Circuit: " + name + "\n";
+	output += "Wire traces: \n";
+	//std::cout << "Wire traces:" << std::endl;
 
 	int time = ioWires.at(0)->GetValuesSize();
 	int nameLen = ioWires.at(0)->GetName().length();
@@ -248,25 +251,25 @@ void Circuit::Print() {
 
 	for (Wire* w : ioWires)
 	{
-		w->Print(time, nameLen);
+		output += w->Print(time, nameLen);
 	}
 
 	// print the numbers at the bottom
 	for (int i = 0; i < nameLen + 2; i++)
 	{
-		std::cout << " ";
+		output += " ";
 	}
-	std::cout << "0";
+	output += "0";
 	while (time > 0)
 	{
 		if (time >= 10)
 		{
-			std::cout << "    5    0";
+			output += "    5    0";
 			time -= 10;
 		}
 		else if (time >= 5)
 		{
-			std::cout << "    5";
+			output += "    5";
 			time = 0;
 		}
 		else
@@ -276,7 +279,9 @@ void Circuit::Print() {
 		
 	}
 
-	std::cout << std::endl << std::endl;
+	output += "\n \n";
+
+	return output;
 }
 
 

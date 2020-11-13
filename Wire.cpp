@@ -72,14 +72,15 @@ void Wire::SetValue(int time, int val) {
 // OTHER
 
 // print function, to make circuit::print cleaner
-void Wire::Print(int time, int nameLen) const
-{
+std::string Wire::Print(int time, int nameLen) const
+{	
+	std::string output = "";
 	// print the name of the wire--allows for names of
 	// variable length
-	std::cout << name;
+	output += name;
 	for (int i = 0; i < nameLen - name.length() + 2; i++)
 	{
-		std::cout << " ";
+		output += " ";
 	}
 
 	for (int i = 0; i < time; i++)
@@ -89,19 +90,21 @@ void Wire::Print(int time, int nameLen) const
 		switch (val)
 		{
 		case -1:
-			std::cout << "x";
+			output += "x";
 			break;
 		case 0:
-			std::cout << "_";
+			output += "_";
 			break;
 		case 1:
-			std::cout << "-";
+			output += "-";
 			break;
 		default: // something went wrong
-			std::cout << "?";
+			output += "?";
 			break;
 		}
 	}
 
-	std::cout << std::endl;
+	output += "\n";
+
+	return output;
 }

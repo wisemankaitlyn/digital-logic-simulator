@@ -43,7 +43,7 @@ int main()
 
 	cir.Simulate();
 
-	cir.Print();
+	cout << cir.Print();
 
 	return 0;
 }

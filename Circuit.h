@@ -30,7 +30,7 @@ public:
 	bool ReadCircuit(std::string filename);
 	bool ReadVector (std::string filename);
 	void Simulate   (                    );
-	void Print      (                    );
+	std::string Print      (                    );
 
 	// OTHER
 	void MakeWire(int wireNo, std::string iname = "");

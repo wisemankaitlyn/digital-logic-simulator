@@ -33,7 +33,7 @@ public:
 
 	// OTHER
 	// print function to make Circuit::Print() nicer
-	void Print(int time, int nameLen) const;
+	std::string Print(int time, int nameLen) const;
 	
 protected:
 	std::string        name;    // if it's a named input/output/whatever
