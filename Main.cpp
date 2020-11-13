@@ -25,13 +25,13 @@ int main()
 
 	cin >> filename;
 
-	if (!cir.ReadCircuit(filename))
+	if (!cir.ReadCircuit(filename + ".txt"))
 	{
 		cout << "ERROR reading circuit description file" << endl;
 		return 1;
 	}
 
-	if (!cir.ReadVector(filename))
+	if (!cir.ReadVector(filename + "_v.txt"))
 	{
 		cout << "ERROR reading circuit vector file" << endl;
 		return 1;

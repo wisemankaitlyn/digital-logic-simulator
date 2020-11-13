@@ -27,11 +27,11 @@ bool Circuit::ReadCircuit(std::string filename) {
 	int input1;
 	int output;
 
-	in.open(filename + ".txt");
+	in.open(filename);
 	if (!in.is_open())
 	{
 		std::cerr << std::endl;
-		std::cerr << "Could not open file " << filename << ".txt" << std::endl;
+		std::cerr << "Could not open file " << filename << std::endl;
 		return false;
 	}
 
@@ -108,11 +108,11 @@ bool Circuit::ReadVector(std::string filename) {
 	std::string tempval;
 	int val;
 
-	in.open(filename + "_v.txt");
+	in.open(filename);
 	if (!in.is_open())
 	{
 		std::cerr << std::endl;
-		std::cerr << "Could not open file " << filename << "_v.txt" << std::endl;
+		std::cerr << "Could not open file " << filename << std::endl;
 		return false;
 	}
 
