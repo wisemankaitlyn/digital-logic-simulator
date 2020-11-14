@@ -25,6 +25,8 @@ int main()
 
 	cin >> filename;
 
+	cout << endl;
+
 	if (!cir.ReadCircuit(filename + ".txt"))
 	{
 		cout << "ERROR reading circuit description file" << endl;

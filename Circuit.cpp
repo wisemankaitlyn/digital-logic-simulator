@@ -21,10 +21,14 @@ bool Circuit::ReadCircuit(std::string filename) {
 	std::ifstream in;
 	std::string keyword;
 	std::string name;
+	std::string sNumber;
 	int number;
 	std::string delay;
+	std::string sInput0;
 	int input0;
+	std::string sInput1;
 	int input1;
+	std::string sOutput;
 	int output;
 
 	in.open(filename);
@@ -41,45 +45,155 @@ bool Circuit::ReadCircuit(std::string filename) {
 		// circuit name
 		if (keyword == "CIRCUIT")
 		{
-			in >> this->name;
+			getline(in, this->name, '\n');
 		}
 		// io wires
 		else if (keyword == "INPUT" || keyword == "OUTPUT")
 		{
-			in >> name >> number;
+			in >> name >> sNumber;
 
-			MakeWire(number, name);
-			ioWires.push_back(wires.at(number));
+			if (isdigit(sNumber[0]))
+			{
+				number = atoi(sNumber.c_str());
+				MakeWire(number, name);
+				ioWires.push_back(wires.at(number));
+
+				name = "";
+				sNumber = "";
+			}
+			else
+			{
+				// invalid input, clear and skip the current line
+				std::cerr << "Issue with wire number: " << sNumber << std::endl;
+				getline(in, keyword, '\n');
+
+				name = "";
+				sNumber = "";
+			}
 		}
 		// not gate
 		else if (keyword == "NOT")
 		{
-			in >> delay >> input0 >> output;
+			in >> delay >> sInput0 >> sOutput;
 
-			// check whether the wires exist and make them if they don't
-			MakeWire(input0);
-			MakeWire(output);
+			if (isdigit(sInput0[0]))
+			{
+				input0 = atoi(sInput0.c_str());
+				MakeWire(input0);
+			}
+			else
+			{
+				std::cerr << "Issue with gate: " << sInput0 << std::endl;
+				getline(in, keyword, '\n');
+				in >> keyword;
+				
+				delay = "";
+				sInput0 = "";
+				sOutput = "";
+
+				continue;
+			}
+
+			if (isdigit(sOutput[0]))
+			{
+				output = atoi(sOutput.c_str());
+				MakeWire(output);
+			}
+			else
+			{
+				std::cerr << "Issue with gate: " << sOutput << std::endl;
+				getline(in, keyword, '\n');
+				in >> keyword;
+
+				delay = "";
+				sInput0 = "";
+				sOutput = "";
+
+				continue;
+			}
 
 			gates.push_back(new Gate(keyword, atoi(delay.c_str()), 
 				wires.at(input0), wires.at(output)));
 
 			wires.at(input0)->AddGate(gates.back());
+
+			delay = "";
+			sInput0 = "";
+			sOutput = "";
 		}
 		// other gates
 		else if (keyword == "AND" || keyword == "OR" || keyword == "XOR"
 			|| keyword == "NAND" || keyword == "NOR" || keyword == "XNOR")
 		{
-			in >> delay >> input0 >> input1 >> output;
+			in >> delay >> sInput0 >> sInput1 >> sOutput;
 
-			MakeWire(input0);
-			MakeWire(input1);
-			MakeWire(output);
+			if (isdigit(sInput0[0]))
+			{
+				input0 = atoi(sInput0.c_str());
+				MakeWire(input0);
+			}
+			else
+			{
+				std::cerr << "Issue with gate: " << sInput0 << std::endl;
+				getline(in, keyword, '\n');
+				in >> keyword;
+
+				delay = "";
+				sInput0 = "";
+				sInput1 = "";
+				sOutput = "";
+
+				continue;
+			}
+
+			if (isdigit(sInput1[0]))
+			{
+				input1 = atoi(sInput1.c_str());
+				MakeWire(input1);
+			}
+			else
+			{
+				std::cerr << "Issue with gate: " << sInput1 << std::endl;
+				getline(in, keyword, '\n');
+				in >> keyword;
+
+				delay = "";
+				sInput0 = "";
+				sInput1 = "";
+				sOutput = "";
+
+				continue;
+			}
+			
+			if (isdigit(sOutput[0]))
+			{
+				output = atoi(sOutput.c_str());
+				MakeWire(output);
+			}
+			else
+			{
+				std::cerr << "Issue with gate: " << sOutput << std::endl;
+				getline(in, keyword, '\n');
+				in >> keyword;
+
+				delay = "";
+				sInput0 = "";
+				sInput1 = "";
+				sOutput = "";
+
+				continue;
+			}
 
 			gates.push_back(new Gate(keyword, atoi(delay.c_str()),
 				wires.at(input0), wires.at(input1), wires.at(output)));
 
 			wires.at(input0)->AddGate(gates.back());
 			wires.at(input1)->AddGate(gates.back());
+
+			delay = "";
+			sInput0 = "";
+			sInput1 = "";
+			sOutput = "";
 		}
 		// invalid input
 		else
@@ -100,7 +214,6 @@ bool Circuit::ReadCircuit(std::string filename) {
 
 // step 2.
 bool Circuit::ReadVector(std::string filename) {
-	bool flag = true;
 	std::ifstream in;
 	std::string keyword;
 	std::string wireName;
@@ -121,8 +234,7 @@ bool Circuit::ReadVector(std::string filename) {
 	{
 		if (keyword == "VECTOR")
 		{
-			// as of right now, we don't do anything with the vector name...
-			in >> keyword;
+			getline(in, keyword, '\n');
 		}
 		else if (keyword == "INPUT")
 		{
@@ -131,6 +243,14 @@ bool Circuit::ReadVector(std::string filename) {
 			if (tempval == "X")
 			{
 				val = -1;
+			}
+			else if (tempval == "")
+			{
+				std::cerr << "Ill-formed input line in vector file." << std::endl;
+				getline(in, keyword, '\n');
+				in >> keyword; 
+
+				continue;
 			}
 			else
 			{
@@ -145,18 +265,21 @@ bool Circuit::ReadVector(std::string filename) {
 					break;
 				}
 			}
+
+			tempval = "";
 		}
 		else
 		{
 			// this line is invalid input...
-			flag = false;
+			std::cerr << "Invalid keyword in vector file: " << keyword << std::endl;
+			getline(in, keyword, '\n');
 		}
 
 		in >> keyword;
 	}
 
 	in.close();
-	return flag;
+	return true;
 }
 
 // step 3.
